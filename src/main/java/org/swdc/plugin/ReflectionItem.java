@@ -100,7 +100,7 @@ public class ReflectionItem {
         ClassInfo info = clazz.getSuperclass();
         if (info != null) {
             String superClazz = info.getName();
-            while (!superClazz.startsWith("java") && !superClazz.startsWith("javax")) {
+            while (superClazz != null) {
                 ReflectionItem item = new ReflectionItem(superClazz);
                 list.add(item);
                 info = info.getSuperclass();
