@@ -41,13 +41,7 @@ public class GenerateReflection extends AbstractMojo {
     private MavenProject project;
 
     @Inject
-    private ArtifactResolver resolver;
-
-    @Inject
     private RepositorySystem system;
-
-    @Parameter(defaultValue = "${project.remoteProjectRepositories}")
-    private List<RemoteRepository> projectRepos;
 
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
