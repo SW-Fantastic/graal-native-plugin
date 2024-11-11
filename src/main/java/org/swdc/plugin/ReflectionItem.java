@@ -8,26 +8,20 @@ import java.util.List;
 
 public class ReflectionItem {
 
-    private String name;
+    private String type = null;
+
+    private List<ReflectionField> fields = new ArrayList<>();
+
     private boolean allDeclaredConstructors = true;
     private boolean allPublicConstructors = true;
     private boolean allDeclaredMethods = true;
     private boolean allPublicMethods = true;
-    private boolean allDeclaredClasses = true;
     private boolean allPublicClasses = true;
     private boolean allDeclaredFields = true;
     private boolean allPublicFields = true;
 
     public ReflectionItem(String fullName) {
-        this.name = fullName;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public boolean isAllDeclaredClasses() {
-        return allDeclaredClasses;
+        this.type = fullName;
     }
 
     public boolean isAllDeclaredConstructors() {
@@ -48,18 +42,6 @@ public class ReflectionItem {
 
     public boolean isAllPublicMethods() {
         return allPublicMethods;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setAllDeclaredClasses(boolean allDeclaredClasses) {
-        this.allDeclaredClasses = allDeclaredClasses;
-    }
-
-    public void setAllDeclaredConstructors(boolean allDeclaredConstructors) {
-        this.allDeclaredConstructors = allDeclaredConstructors;
     }
 
     public boolean isAllDeclaredFields() {
@@ -94,6 +76,14 @@ public class ReflectionItem {
         this.allPublicMethods = allPublicMethods;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public static List<ReflectionItem> resolve(ClassInfo clazz) {
 
         List<ReflectionItem> list = new ArrayList<>();
@@ -119,13 +109,21 @@ public class ReflectionItem {
     public boolean equals(Object obj) {
         if (obj instanceof ReflectionItem) {
             ReflectionItem other = (ReflectionItem)obj;
-            return name.equals(other.getName());
+            return type.equals(other.getType());
         }
         return false;
     }
 
+    public List<ReflectionField> getFields() {
+        return fields;
+    }
+
+    public void setFields(List<ReflectionField> fields) {
+        this.fields = fields;
+    }
+
     @Override
     public int hashCode() {
-        return name.hashCode();
+        return type.hashCode();
     }
 }
